@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essenza | 自分らしく、美しく生きるための審美コーチングプログラム</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #FAF7F2;
+    --cream: #F2EDE4;
+    --sand: #E0D5C5;
+    --warm-gray: #A89880;
+    --brown: #7A6450;
+    --dark: #2A2018;
+    --gold: #C4A96B;
+    --gold-light: #E8D5A0;
+    --sage: #8A9B8A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ivory);
+    color: var(--dark);
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 200;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    position: relative;
+    background: var(--dark);
+    overflow: hidden;
+    padding: 80px 24px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(196,169,107,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(138,155,138,0.08) 0%, transparent 50%);
+  }
+
+  .hero-line {
+    position: absolute;
+    top: 0; left: 50%;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(196,169,107,0.3) 30%, rgba(196,169,107,0.3) 70%, transparent);
+    transform: translateX(-50%);
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    max-width: 680px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(11px, 2vw, 13px);
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 7vw, 72px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ivory);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(13px, 2.5vw, 16px);
+    color: var(--sand);
+    letter-spacing: 0.12em;
+    line-height: 2.2;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .hero-cta {
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 18px 52px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Shippori Mincho', serif;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    text-decoration: none;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .btn-primary:hover::before { transform: scaleX(1); }
+  .btn-primary:hover { color: var(--dark); }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 1.8s forwards;
+  }
+
+  .hero-scroll span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--warm-gray), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: clamp(80px, 12vw, 160px) clamp(24px, 6vw, 80px);
+  }
+
+  .section-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .section-inner.wide {
+    max-width: 1000px;
+  }
+
+  .label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  .h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.3;
+    margin-bottom: 40px;
+    letter-spacing: 0.02em;
+  }
+
+  .h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(15px, 2.5vw, 20px);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .body-text {
+    font-size: clamp(14px, 2vw, 15px);
+    line-height: 2.2;
+    color: #4A3F32;
+    letter-spacing: 0.05em;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 48px auto;
+  }
+
+  .divider.left { margin-left: 0; }
+
+  /* ─── PAIN ─── */
+  .pain {
+    background: var(--cream);
+  }
+
+  .pain-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 40px;
+  }
+
+  .pain-list li {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--sand);
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(14px, 2.2vw, 17px);
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: var(--brown);
+  }
+
+  .pain-list li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ─── STORY ─── */
+  .story {
+    background: var(--ivory);
+    position: relative;
+  }
+
+  .story::before {
+    content: '"';
+    position: absolute;
+    top: 60px;
+    left: clamp(16px, 4vw, 60px);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px;
+    color: var(--sand);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .story .section-inner {
+    position: relative;
+  }
+
+  .story-text {
+    font-size: clamp(14px, 2vw, 15px);
+    line-height: 2.4;
+    color: #4A3F32;
+    letter-spacing: 0.06em;
+  }
+
+  .story-text p { margin-bottom: 2em; }
+
+  .story-highlight {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(16px, 2.8vw, 22px);
+    color: var(--dark);
+    border-left: 2px solid var(--gold);
+    padding-left: 24px;
+    margin: 40px 0;
+    line-height: 1.9;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── WHAT ─── */
+  .what {
+    background: var(--dark);
+    color: var(--ivory);
+  }
+
+  .what .h2 { color: var(--ivory); }
+  .what .label { color: var(--gold); }
+
+  .what-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    margin-top: 56px;
+  }
+
+  .what-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(196,169,107,0.2);
+    padding: 48px 36px;
+    transition: background 0.4s;
+  }
+
+  .what-card:hover {
+    background: rgba(196,169,107,0.06);
+  }
+
+  .what-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-style: italic;
+    color: rgba(196,169,107,0.25);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .what-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .what-desc {
+    font-size: 13px;
+    color: var(--warm-gray);
+    line-height: 2.1;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── PROGRAM ─── */
+  .program {
+    background: var(--cream);
+  }
+
+  .program-months {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .month-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    border: 1px solid var(--sand);
+    background: var(--ivory);
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .month-item:hover { transform: translateX(4px); }
+
+  .month-label {
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    gap: 4px;
+  }
+
+  .month-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .month-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: var(--ivory);
+    line-height: 1;
+  }
+
+  .month-body {
+    padding: 24px 28px;
+  }
+
+  .month-theme {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--brown);
+    margin-bottom: 8px;
+  }
+
+  .month-detail {
+    font-size: 13px;
+    color: #6B5D4E;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── VOICE ─── */
+  .voice {
+    background: var(--ivory);
+  }
+
+  .voice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .voice-card {
+    background: var(--cream);
+    padding: 36px 32px;
+    border-top: 2px solid var(--gold);
+    position: relative;
+  }
+
+  .voice-card::before {
+    content: '✦';
+    position: absolute;
+    top: -1px; left: 32px;
+    font-size: 10px;
+    color: var(--gold);
+    transform: translateY(-50%);
+    background: var(--cream);
+    padding: 0 8px;
+  }
+
+  .voice-text {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 14px;
+    line-height: 2.1;
+    letter-spacing: 0.06em;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .voice-from {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--warm-gray);
+    text-align: right;
+  }
+
+  /* ─── PROFILE ─── */
+  .profile {
+    background: var(--dark);
+    color: var(--ivory);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile::after {
+    content: 'Kano';
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 160px;
+    font-style: italic;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .profile .h2 { color: var(--ivory); }
+
+  .profile-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 640px) {
+    .profile-body { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .profile-img-wrap {
+    aspect-ratio: 3/4;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(196,169,107,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-img-placeholder {
+    text-align: center;
+    color: var(--warm-gray);
+  }
+
+  .profile-img-placeholder .icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .profile-img-placeholder p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(196,169,107,0.5);
+  }
+
+  .profile-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .profile-name-ja {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--warm-gray);
+    margin-bottom: 28px;
+  }
+
+  .profile-desc {
+    font-size: 13px;
+    color: rgba(250,247,242,0.75);
+    line-height: 2.2;
+    letter-spacing: 0.05em;
+  }
+
+  .profile-desc p { margin-bottom: 1.5em; }
+
+  /* ─── DETAIL ─── */
+  .detail {
+    background: var(--cream);
+  }
+
+  .detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    font-size: 14px;
+  }
+
+  .detail-table tr {
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .detail-table th {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--brown);
+    width: 140px;
+    padding: 20px 16px 20px 0;
+    vertical-align: top;
+    text-align: left;
+    font-size: 13px;
+  }
+
+  .detail-table td {
+    padding: 20px 0;
+    color: #4A3F32;
+    line-height: 2;
+    letter-spacing: 0.04em;
+  }
+
+  .price-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .price-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-style: italic;
+    color: var(--dark);
+    letter-spacing: 0.02em;
+  }
+
+  .price-unit {
+    font-size: 14px;
+    color: var(--warm-gray);
+  }
+
+  /* ─── FAQ ─── */
+  .faq {
+    background: var(--ivory);
+  }
+
+  .faq-list {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--sand);
+    padding: 32px 0;
+  }
+
+  .faq-q {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--dark);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    cursor: pointer;
+    margin-bottom: 0;
+    transition: color 0.3s;
+  }
+
+  .faq-q:hover { color: var(--brown); }
+
+  .faq-q-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--gold);
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
+  .faq-a {
+    margin-top: 20px;
+    padding-left: 36px;
+    font-size: 13.5px;
+    line-height: 2.2;
+    color: #6B5D4E;
+    letter-spacing: 0.05em;
+  }
+
+  .faq-a-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--sage);
+    display: inline;
+    margin-right: 10px;
+  }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    background: var(--dark);
+    text-align: center;
+    padding: clamp(80px, 14vw, 180px) clamp(24px, 6vw, 80px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,169,107,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section .h2 {
+    color: var(--ivory);
+    margin-bottom: 20px;
+  }
+
+  .cta-sub {
+    font-size: 14px;
+    color: var(--warm-gray);
+    letter-spacing: 0.1em;
+    margin-bottom: 56px;
+    line-height: 2;
+  }
+
+  .btn-gold {
+    display: inline-block;
+    padding: 22px 64px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Shippori Mincho', serif;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    text-decoration: none;
+    transition: all 0.4s;
+    font-weight: 500;
+  }
+
+  .btn-gold:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(196,169,107,0.3);
+  }
+
+  .cta-note {
+    margin-top: 24px;
+    font-size: 12px;
+    color: rgba(168,152,128,0.7);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #1A1208;
+    padding: 48px 24px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(168,152,128,0.4);
+    letter-spacing: 0.15em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 600px) {
+    .what-grid { grid-template-columns: 1fr; }
+    .month-item { grid-template-columns: 70px 1fr; }
+    .detail-table th { width: 100px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Online Coaching Program</span>
+    <h1 class="hero-title">Essenza</h1>
+    <p class="hero-subtitle">
+      "ちゃんとしなきゃ"を手放して、<br>
+      自分らしく美しく生きる。<br><br>
+      所作・姿勢・審美眼を整え、<br>
+      内側から輝く女性へ。
+    </p>
+    <div class="hero-cta">
+      <a href="#apply" class="btn-primary"><span>無料相談会に申し込む</span></a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════════ PAIN ═══════════════ -->
+<section class="pain">
+  <div class="section-inner">
+    <span class="label reveal">For You</span>
+    <h2 class="h2 reveal">こんな気持ち、<br>ありませんか？</h2>
+    <ul class="pain-list">
+      <li class="reveal">マナーや所作を学びたいけれど、何から始めればいいのかわからない</li>
+      <li class="reveal">外見は整えているのに、なぜか自分に自信が持てない</li>
+      <li class="reveal">「上品に見せたい」と努力しているのに、どこかぎこちない</li>
+      <li class="reveal">自分の「美しさの軸」がなく、いつも他人の基準に振り回されている</li>
+      <li class="reveal">なんとなく自分を後回しにしてしまい、くすぶった気持ちが続いている</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════ STORY ═══════════════ -->
+<section class="story">
+  <div class="section-inner">
+    <span class="label reveal">The Truth</span>
+    <h2 class="h2 reveal">うまくいかないのは、<br>あなたのせいではありません。</h2>
+
+    <div class="story-text reveal">
+      <p>
+        多くの女性が「もっと上品になりたい」「自信を持ちたい」と思いながら、
+        表面的な情報をかき集め、ひとりで試行錯誤を繰り返しています。
+      </p>
+      <p>
+        マナー本を読んでも、動画を観ても、<br>
+        なぜか日常には馴染まない。<br>
+        意識したときだけ「よそゆきの自分」になってしまう。
+      </p>
+    </div>
+
+    <div class="story-highlight reveal">
+      変われないのは、自分を無意識に<br>
+      「低い価値のもの」として扱っているから。
+    </div>
+
+    <div class="story-text reveal">
+      <p>
+        姿勢や所作は、その人の「自分への扱い方」が<br>
+        そのまま現れる場所です。
+      </p>
+      <p>
+        外側を整える前に、まず内側の土台を作る。<br>
+        Essenzaはその順番を、丁寧に歩んでいく場所です。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHAT ═══════════════ -->
+<section class="what">
+  <div class="section-inner wide">
+    <span class="label reveal">About Essenza</span>
+    <h2 class="h2 reveal">Essenzaで手に入れる、<br>3つの変化</h2>
+
+    <div class="what-grid">
+      <div class="what-card reveal">
+        <div class="what-num">01</div>
+        <div class="what-title">姿勢と所作が、<br>自信の入口になる</div>
+        <p class="what-desc">「背筋を伸ばす」という小さな行動が、自分への扱い方を変えます。外側から内側へ、体から心へ、変化は連鎖していきます。</p>
+      </div>
+      <div class="what-card reveal">
+        <div class="what-num">02</div>
+        <div class="what-title">マナーが「義務」から<br>「美意識」に変わる</div>
+        <p class="what-desc">ルールを覚えるのではなく、なぜそれが美しいのかを理解することで、どんな場面でも自然体で振る舞えるようになります。</p>
+      </div>
+      <div class="what-card reveal">
+        <div class="what-num">03</div>
+        <div class="what-title">自分だけの「美の軸」が<br>できる</div>
+        <p class="what-desc">他人の基準に振り回されることなく、自分が何を美しいと感じるか。その軸を持つことで、選択に迷わなくなります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PROGRAM ═══════════════ -->
+<section class="program">
+  <div class="section-inner">
+    <span class="label reveal">Curriculum</span>
+    <h2 class="h2 reveal">5ヶ月間のカリキュラム</h2>
+    <p class="body-text reveal">5月30日スタート。少しずつ、確実に、自分を整えていく旅。</p>
+
+    <div class="program-months">
+      <div class="month-item reveal">
+        <div class="month-label">
+          <span class="month-en">Month</span>
+          <span class="month-num">1</span>
+        </div>
+        <div class="month-body">
+          <div class="month-theme">自分を知る —— 審美眼の土台づくり</div>
+          <p class="month-detail">自分が何を美しいと感じるのかを言語化し、これまでの「思い込みの美意識」を解きほぐしていきます。</p>
+        </div>
+      </div>
+      <div class="month-item reveal">
+        <div class="month-label">
+          <span class="month-en">Month</span>
+          <span class="month-num">2</span>
+        </div>
+        <div class="month-body">
+          <div class="month-theme">姿勢と身体 —— 内側からの美しさ</div>
+          <p class="month-detail">姿勢・歩き方・座り方。体の使い方を整えることで、自分への「扱い方」が変わっていきます。</p>
+        </div>
+      </div>
+      <div class="month-item reveal">
+        <div class="month-label">
+          <span class="month-en">Month</span>
+          <span class="month-num">3</span>
+        </div>
+        <div class="month-body">
+          <div class="month-theme">テーブルマナー —— 食卓という舞台</div>
+          <p class="month-detail">食事の作法を、「ルールの暗記」ではなく「なぜ美しいのか」という視点で学びます。</p>
+        </div>
+      </div>
+      <div class="month-item reveal">
+        <div class="month-label">
+          <span class="month-en">Month</span>
+          <span class="month-num">4</span>
+        </div>
+        <div class="month-body">
+          <div class="month-theme">言葉と関係性 —— 美しいコミュニケーション</div>
+          <p class="month-detail">声のトーン・言葉の選び方・聴き方。伝えるだけでなく、品のある関係性の結び方を身につけます。</p>
+        </div>
+      </div>
+      <div class="month-item reveal">
+        <div class="month-label">
+          <span class="month-en">Month</span>
+          <span class="month-num">5</span>
+        </div>
+        <div class="month-body">
+          <div class="month-theme">生活美学 —— 日常を美しく整える</div>
+          <p class="month-detail">空間・時間・持ち物。暮らし全体に「美意識の軸」を通し、Essenzaを自分のものにしていきます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ VOICE ═══════════════ -->
+<section class="voice">
+  <div class="section-inner wide">
+    <span class="label reveal">Voice</span>
+    <h2 class="h2 reveal">受講された方からの声</h2>
+
+    <div class="voice-grid">
+      <div class="voice-card reveal">
+        <p class="voice-text">「マナーって覚えるものだと思っていたのですが、カノさんに"なぜ美しいのか"を教えてもらってから、自然と身体に馴染んできました。」</p>
+        <p class="voice-from">30代 / 会社員</p>
+      </div>
+      <div class="voice-card reveal">
+        <p class="voice-text">「姿勢を整えるだけで、こんなに気持ちが変わるとは思いませんでした。職場でも"雰囲気が変わったね"と言ってもらえるように。」</p>
+        <p class="voice-from">40代 / フリーランス</p>
+      </div>
+      <div class="voice-card reveal">
+        <p class="voice-text">「自分を後回しにしていたことに気がついて、涙が出ました。ここに来て本当によかったです。日常がそのまま変わってきています。」</p>
+        <p class="voice-from">30代 / 主婦</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PROFILE ═══════════════ -->
+<section class="profile">
+  <div class="section-inner wide">
+    <span class="label reveal">Instructor</span>
+    <h2 class="h2 reveal">Instructor</h2>
+
+    <div class="profile-body">
+      <div class="profile-img-wrap reveal">
+        <div class="profile-img-placeholder">
+          <span class="icon">🌳</span>
+          <p>Photo</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="profile-name">Kano</div>
+        <div class="profile-name-ja">カノ｜マナー講師・審美コーチ</div>
+        <div class="profile-desc">
+          <p>
+            ラグジュアリーブランドでの接客販売を経て、「本物の上品さとは何か」を探求。
+            退職後、マナー講師・審美コーチとして独立。
+          </p>
+          <p>
+            「ちゃんとしなきゃ」という義務感からではなく、
+            自分を大切にする延長線上に、本当の美しさがある——
+            そう信じて、Essenzaを立ち上げました。
+          </p>
+          <p>
+            月に一度のエレガントランチや、オンラインでの個別セッションを通じて、
+            日常の中に美意識を宿すサポートをしています。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ DETAIL ═══════════════ -->
+<section class="detail" id="detail">
+  <div class="section-inner">
+    <span class="label reveal">Program Detail</span>
+    <h2 class="h2 reveal">プログラム詳細</h2>
+
+    <table class="detail-table reveal">
+      <tr>
+        <th>プログラム名</th>
+        <td>Essenza（エッセンツァ）1期</td>
+      </tr>
+      <tr>
+        <th>期間</th>
+        <td>2025年5月30日（金）〜 9月末頃（約5ヶ月）</td>
+      </tr>
+      <tr>
+        <th>形式</th>
+        <td>オンライン（Zoom・動画・テキスト）</td>
+      </tr>
+      <tr>
+        <th>対象</th>
+        <td>
+          所作・マナー・審美眼を磨きたい女性<br>
+          自分に自信を持ちたい大人の女性
+        </td>
+      </tr>
+      <tr>
+        <th>受講料</th>
+        <td>
+          <div class="price-wrap">
+            <span class="price-main">398,000</span>
+            <span class="price-unit">円（税込）</span>
+          </div>
+          <small style="font-size:12px;color:var(--warm-gray);margin-top:6px;display:block;">分割払い相談可</small>
+        </td>
+      </tr>
+      <tr>
+        <th>定員</th>
+        <td>若干名（先着順）</td>
+      </tr>
+      <tr>
+        <th>無料相談会</th>
+        <td>
+          5月8日（木）21:00〜<br>
+          5月10日（土）14:00〜<br>
+          <small style="font-size:12px;color:var(--warm-gray);">各回30分・オンライン（Zoom）</small>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section class="faq">
+  <div class="section-inner">
+    <span class="label reveal">FAQ</span>
+    <h2 class="h2 reveal">よくあるご質問</h2>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q">
+          <span class="faq-q-mark">Q</span>
+          <span>マナーを学んだことがなくても大丈夫ですか？</span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-a-mark">A</span>
+          もちろんです。むしろ「まっさら」な状態から始める方が、正しい感覚を身につけやすいこともあります。初心者の方を前提に構成しています。
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">
+          <span class="faq-q-mark">Q</span>
+          <span>仕事や家事が忙しくても続けられますか？</span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-a-mark">A</span>
+          忙しい日常の中でも取り組めるよう、コンテンツは細かく分けて設計しています。録画視聴も可能ですので、ご自身のペースで進めていただけます。
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">
+          <span class="faq-q-mark">Q</span>
+          <span>オンラインで所作を学べるか不安です。</span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-a-mark">A</span>
+          ご安心ください。映像・テキスト・個別フィードバックを組み合わせることで、オンラインでもしっかりと身につくプログラムになっています。
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">
+          <span class="faq-q-mark">Q</span>
+          <span>申し込みの前に話を聞くことはできますか？</span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-a-mark">A</span>
+          はい。まずは無料の個別相談会（30分）にお越しください。プログラムの詳細や、ご自身の状況に合わせたお話をさせていただきます。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA ═══════════════ -->
+<section class="cta-section" id="apply">
+  <div class="section-inner" style="text-align:center;position:relative;">
+    <span class="label reveal" style="text-align:center;display:block;">First Step</span>
+    <h2 class="h2 reveal">まずは、無料相談会へ。</h2>
+    <p class="cta-sub reveal">
+      プログラムへの参加を決めなくても構いません。<br>
+      「自分に合うかな」という気持ちで、ぜひ一度お話しましょう。
+    </p>
+    <div class="reveal">
+      <a href="#" class="btn-gold">無料相談会に申し込む</a>
+      <p class="cta-note">5月8日（木）21:00 / 5月10日（土）14:00｜各回30分・Zoom</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-logo">Essenza</div>
+  <div class="footer-links">
+    <a href="#">特定商取引法に基づく表記</a>
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">お問い合わせ</a>
+  </div>
+  <p class="footer-copy">© 2025 カノ. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
