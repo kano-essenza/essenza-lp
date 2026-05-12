@@ -9,15 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ivory: #FAF7F2;
-    --cream: #F2EDE4;
-    --sand: #E0D5C5;
-    --warm-gray: #A89880;
-    --brown: #7A6450;
-    --dark: #2A2018;
-    --gold: #C4A96B;
-    --gold-light: #E8D5A0;
-    --sage: #8A9B8A;
+    --ivory: #FAF8FC;
+    --cream: #F3EFF8;
+    --sand: #DDD5E8;
+    --warm-gray: #9A8AAA;
+    --brown: #6B5880;
+    --dark: #1E1528;
+    --gold: #B89CC8;
+    --gold-light: #D9C8EC;
+    --sage: #9A8AAA;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,15 +48,15 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(196,169,107,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(138,155,138,0.08) 0%, transparent 50%);
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(160,120,200,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(120,90,160,0.12) 0%, transparent 50%);
   }
 
   .hero-line {
     position: absolute;
     top: 0; left: 50%;
     width: 1px; height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(196,169,107,0.3) 30%, rgba(196,169,107,0.3) 70%, transparent);
+    background: linear-gradient(to bottom, transparent, rgba(160,120,200,0.3) 30%, rgba(160,120,200,0.3) 70%, transparent);
     transform: translateX(-50%);
   }
 
@@ -135,33 +135,6 @@
   .btn-primary:hover { color: var(--dark); }
   .btn-primary span { position: relative; z-index: 1; }
 
-  .hero-scroll {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    opacity: 0;
-    animation: fadeUp 1s 1.8s forwards;
-  }
-
-  .hero-scroll span {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    color: var(--warm-gray);
-    text-transform: uppercase;
-  }
-
-  .scroll-line {
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, var(--warm-gray), transparent);
-    animation: scrollPulse 2s infinite;
-  }
 
   /* ─── SECTION BASE ─── */
   section {
@@ -316,20 +289,20 @@
 
   .what-card {
     background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(196,169,107,0.2);
+    border: 1px solid rgba(160,120,200,0.2);
     padding: 48px 36px;
     transition: background 0.4s;
   }
 
   .what-card:hover {
-    background: rgba(196,169,107,0.06);
+    background: rgba(160,120,200,0.08);
   }
 
   .what-num {
     font-family: 'Cormorant Garamond', serif;
     font-size: 56px;
     font-style: italic;
-    color: rgba(196,169,107,0.25);
+    color: rgba(160,120,200,0.25);
     line-height: 1;
     margin-bottom: 20px;
   }
@@ -527,7 +500,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 11px;
     letter-spacing: 0.2em;
-    color: rgba(196,169,107,0.5);
+    color: rgba(160,120,200,0.5);
   }
 
   .profile-name {
@@ -549,7 +522,7 @@
 
   .profile-desc {
     font-size: 13px;
-    color: rgba(250,247,242,0.75);
+    color: rgba(243,239,248,0.75);
     line-height: 2.2;
     letter-spacing: 0.05em;
   }
@@ -687,7 +660,7 @@
     transform: translate(-50%, -50%);
     width: 500px; height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(196,169,107,0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(160,120,200,0.12) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -720,7 +693,7 @@
   .btn-gold:hover {
     background: var(--gold-light);
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(196,169,107,0.3);
+    box-shadow: 0 12px 40px rgba(160,120,200,0.3);
   }
 
   .cta-note {
@@ -806,21 +779,17 @@
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
   <div class="hero-content">
-    <span class="hero-eyebrow">Online Coaching Program</span>
+    <span class="hero-eyebrow">自己美学講座</span>
     <h1 class="hero-title">Essenza</h1>
     <p class="hero-subtitle">
-      "ちゃんとしなきゃ"を手放して、<br>
-      自分らしく美しく生きる。<br><br>
-      所作・姿勢・審美眼を整え、<br>
-      内側から輝く女性へ。
+      正解より美意識で選べる<br>
+      本質から美しい生き方。<br><br>
+      在り方・所作を磨いて<br>
+      品格と自信のある女性へ。
     </p>
     <div class="hero-cta">
-      <a href="#apply" class="btn-primary"><span>無料相談会に申し込む</span></a>
+      <a href="#apply" class="btn-primary"><span>お申し込みはこちら</span></a>
     </div>
-  </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
   </div>
 </section>
 
